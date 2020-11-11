@@ -17,8 +17,8 @@ protocol RootRouterProtocol: class {
 }
 
 class RootRouter: RootRouterProtocol {
-    private let viewModel:RootViewModelProtocol
-   
+    unowned private let  viewModel:RootViewModelProtocol
+    
     required init(with viewModel: RootViewModelProtocol) {
         self.viewModel = viewModel
     }
