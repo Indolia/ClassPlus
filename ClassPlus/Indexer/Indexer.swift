@@ -9,12 +9,13 @@ import Foundation
 import UIKit
 
 struct Indexer {
+    var rootRouter: RootRouterProtocol?
     enum RootViewType {
         case welcome
         case home
     }
     
-    func setLandingIndex() {
+    mutating func setLandingIndex() {
         let landingView = getLandingViewType()
         switch landingView {
         case .welcome:
@@ -32,16 +33,16 @@ struct Indexer {
     }
     
     
-    private func setWelcomeAsLanding() {
+    private mutating func setWelcomeAsLanding() {
         let dependencies = WelcomeViewDependencies(nav: NavigationViewController.current, storyboard: AppConstants.Storyboard.main)
-        let router  = WelcomeBuilder().build(dependencies: dependencies)
-        router.setAsRootView(completion: nil)
+        rootRouter  = WelcomeBuilder().build(dependencies: dependencies)
+        rootRouter?.setAsRootView(completion: nil)
     }
     
-    private func setHomeAsLandig() {
+    private mutating func setHomeAsLandig() {
         let dependencies = HomeViewDependencies(userType: .member, nav: NavigationViewController.current, storyboard: AppConstants.Storyboard.main)
-        let router  = HomeBuilder().build(dependencies: dependencies)
-        router.setAsRootView(completion: nil)
+        rootRouter = HomeBuilder().build(dependencies: dependencies)
+        rootRouter?.setAsRootView(completion: nil)
     }
     
 }

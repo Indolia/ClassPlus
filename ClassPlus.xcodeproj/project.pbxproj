@@ -676,7 +676,7 @@
 				DEVELOPMENT_TEAM = PQL36LJA78;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "ClassPlus/Assets+plist/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -700,7 +700,7 @@
 				DEVELOPMENT_TEAM = PQL36LJA78;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "ClassPlus/Assets+plist/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

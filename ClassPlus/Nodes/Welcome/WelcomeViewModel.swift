@@ -14,8 +14,10 @@ protocol WelcomeViewModelProtocol: class {
 
 class WelcomeViewModel: WelcomeViewModelProtocol {
     let viewBuilder: WelcomeViewBuilderProtocol
-    var router: WelcomeRouterProtocol!
-    private var view: WelcomeViewProtocol?
+    weak var router: WelcomeRouterProtocol!
+    weak private var view: WelcomeViewProtocol?
+    var homeRouterProtocol: RootRouterProtocol?
+    var loginRouter: RootRouterProtocol?
     
     init(viewBuilder: WelcomeViewBuilderProtocol) {
         self.viewBuilder = viewBuilder
@@ -42,13 +44,13 @@ extension WelcomeViewModel: WelcomeViewActionDelegate {
     
     private func login() {
         let dependencies = LoginViewDependencies(nav: viewBuilder.dependencies.nav, storyboard: AppConstants.Storyboard.main)
-        let router  = LoginBuilder().build(dependencies: dependencies)
-        router.push(completion: nil)
+        loginRouter = LoginBuilder().build(dependencies: dependencies)
+        loginRouter?.push(completion: nil)
     }
     
     private func home() {
         let dependencies = HomeViewDependencies(userType: .guest, nav: viewBuilder.dependencies.nav, storyboard: AppConstants.Storyboard.main)
-        let router  = HomeBuilder().build(dependencies: dependencies)
-        router.push(completion: nil)
+         homeRouterProtocol  = HomeBuilder().build(dependencies: dependencies)
+        homeRouterProtocol?.push(completion: nil)
     }
 }

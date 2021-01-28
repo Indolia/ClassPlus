@@ -7,15 +7,11 @@
 
 import Foundation
 
-protocol LoginRouterProtocol: class {
-    
-}
+protocol LoginRouterProtocol: class { }
 
 class LoginRouter: RootRouter, LoginRouterProtocol {
-    private let viewModel:RootViewModelProtocol
-    
+   
     required init(with viewModel: RootViewModelProtocol) {
-        self.viewModel = viewModel
         super.init(with: viewModel)
     }
 }

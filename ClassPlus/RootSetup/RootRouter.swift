@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-protocol RootRouterProtocol: class {
+protocol RootRouterProtocol {
     init(with viewModel: RootViewModelProtocol)
     func push(completion: (() -> Void)?)
     func pop(completion: (() -> Void)?)
@@ -16,8 +16,15 @@ protocol RootRouterProtocol: class {
     func setAsRootView(completion: (() -> Void)?)
 }
 
+extension RootRouterProtocol {
+    func push(completion: (() -> Void)?) {}
+    func pop(completion: (() -> Void)?) {}
+    func present(completion: (() -> Void)?) {}
+    func setAsRootView(completion: (() -> Void)?) {}
+}
+
 class RootRouter: RootRouterProtocol {
-    unowned private let  viewModel:RootViewModelProtocol
+    private let  viewModel:RootViewModelProtocol
     
     required init(with viewModel: RootViewModelProtocol) {
         self.viewModel = viewModel

@@ -14,8 +14,8 @@ protocol HomeViewModelProtocol: class {
 
 class HomeViewModel: HomeViewModelProtocol {
     let viewBuilder: HomeViewBuilderProtocol
-    var router: HomeRouterProtocol!
-    private var view: HomeViewProtocol?
+  weak  var router: HomeRouterProtocol!
+  weak  private var view: HomeViewProtocol?
     lazy var interactor: HomeInteractor = HomeInteractor()
     private var currentPaging: Paging?
     private var employees = [EmployeeModel]()

@@ -42,8 +42,8 @@ protocol CreateOrEditEmployeeViewModelProtocol: class {
 
 class CreateOrEditEmployeeViewModel: CreateOrEditEmployeeViewModelProtocol {
     let viewBuilder: CreateOrEditEmployeeViewBuilderProtocol
-    var router: CreateOrEditEmployeeRouterProtocol!
-    private var view: CreateOrEditEmployeeViewProtocol?
+    weak var router: CreateOrEditEmployeeRouterProtocol!
+    private weak var view: CreateOrEditEmployeeViewProtocol?
     private lazy var interactor = CreateOrEditEmployeeInteractor()
     
     init(viewBuilder: CreateOrEditEmployeeViewBuilderProtocol) {

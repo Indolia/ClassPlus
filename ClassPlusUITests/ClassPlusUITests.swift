@@ -21,22 +21,66 @@ class ClassPlusUITests: XCTestCase {
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
+    
+    
+    func testLoginAsMember() {
         let app = XCUIApplication()
         app.launch()
-
-        // Use recording to get started writing UI tests.
+        app.buttons["Member"].staticTexts["Member"].tap()
+        let scrollViewsQuery = app.scrollViews
+        let elementsQuery = scrollViewsQuery.otherElements
+        let nameField = elementsQuery.textFields["User Name"]
+        nameField.tap()
+        nameField.typeText("Indolia")
+        nameField.typeText("\n")
+        XCTAssertEqual(nameField.value as! String, "Indolia", "Name is right")
+        let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
+        passwordSecureTextField.tap()
+        passwordSecureTextField.typeText("wiier")
+        passwordSecureTextField.typeText("\n")
+        elementsQuery.buttons["Submit"].tap()
+       // app.navigationBars["Login"].buttons["Back"].tap()
+        sleep(5)
+    }
+//
+//    func testExample() throws {
+//        // UI tests must launch the application that they test.
+//        let app = XCUIApplication()
+//        app.launch()
+        
+//       // let app = XCUIApplication()
+//        app.buttons["Guest"].staticTexts["Guest"].tap()
+//        app.buttons["Create New Employee"].staticTexts["Create New Employee"].tap()
+//        app.tables/*@START_MENU_TOKEN@*/.cells.containing(.staticText, identifier:"eve.holt@reqres.in")/*[[".cells.containing(.staticText, identifier:\"Eve Holt\")",".cells.containing(.staticText, identifier:\"eve.holt@reqres.in\")"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.buttons["more"].tap()
+//        app.sheets.scrollViews.otherElements.buttons["Edit Details"].tap()
+//
+//        let homeButton = app.navigationBars["ClassPlus.CreateOrEditEmployeeView"].buttons["Home"]
+//        homeButton.tap()
+//        app.staticTexts["Create New Employee"].tap()
+//        homeButton.tap()
+//        app.navigationBars["Home"].buttons["Back"].tap()
+//        app.buttons["Member"].tap()
+//
+//        let scrollViewsQuery = app.scrollViews
+//        let elementsQuery = scrollViewsQuery.otherElements
+//        elementsQuery.textFields["User Name"].tap()
+//        scrollViewsQuery.children(matching: .other).element(boundBy: 0).children(matching: .other).element(boundBy: 1).tap()
+//
+//        let passwordSecureTextField = elementsQuery.secureTextFields["Password"]
+//        passwordSecureTextField.tap()
+//        passwordSecureTextField.tap()
+//        elementsQuery.buttons["Submit"].tap()
+//        app.navigationBars["Login"].buttons["Back"].tap()
+//        // Use recording to get started writing UI tests.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+   // }
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
-    }
+//    func testLaunchPerformance() throws {
+//        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
+//            // This measures how long it takes to launch your application.
+//            measure(metrics: [XCTApplicationLaunchMetric()]) {
+//                XCUIApplication().launch()
+//            }
+//        }
+//    }
 }

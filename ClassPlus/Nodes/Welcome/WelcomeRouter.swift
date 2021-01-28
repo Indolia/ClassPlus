@@ -11,10 +11,10 @@ protocol WelcomeRouterProtocol: class {
 }
 
 class WelcomeRouter: RootRouter, WelcomeRouterProtocol {
-    private let viewModel:RootViewModelProtocol
+   // private let viewModel:RootViewModelProtocol
     
     required init(with viewModel: RootViewModelProtocol) {
-        self.viewModel = viewModel
+       // self.viewModel = viewModel
         super.init(with: viewModel)
     }
 }

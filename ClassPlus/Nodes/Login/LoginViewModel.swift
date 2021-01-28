@@ -21,8 +21,9 @@ protocol LoginViewModelProtocol: class {
 
 class LoginViewModel: LoginViewModelProtocol {
     let viewBuilder: LoginViewBuilderProtocol
-    var router: LoginRouterProtocol!
-    private var view: LoginViewProtocol?
+    weak var router: LoginRouterProtocol!
+    private weak var view: LoginViewProtocol?
+    private var homeRouter: RootRouterProtocol?
     private var userInfo: UserInfoModel? {
         willSet{
             newValue?.signUp(completion: { (status) in
@@ -47,8 +48,8 @@ extension LoginViewModel: RootViewModelProtocol {
 extension LoginViewModel: LoginViewActionDelegate {
     func successfullLogedIn() {
         let dependencies = HomeViewDependencies(userType: .member, nav: viewBuilder.dependencies.nav, storyboard: AppConstants.Storyboard.main)
-        let router  = HomeBuilder().build(dependencies: dependencies)
-        router.push(completion: nil)
+        homeRouter  = HomeBuilder().build(dependencies: dependencies)
+        homeRouter?.push(completion: nil)
     }
     
     func validateDetails(with userName: String?, password: String?, completion: (Result<Bool, LoginError>) -> Void) {

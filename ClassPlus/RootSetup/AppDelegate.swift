@@ -11,6 +11,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var indexer =  Indexer()
     static var shared: AppDelegate {
        return UIApplication.shared.delegate as! AppDelegate
     }
@@ -18,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
        
-        Indexer().setLandingIndex()
+        indexer.setLandingIndex()
+  
         return true
     }
 
@@ -46,4 +48,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-
