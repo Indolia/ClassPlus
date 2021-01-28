@@ -21,3 +21,15 @@ deploy-prod:
   script:
     - echo "This job deploys something from the $CI_COMMIT_BRANCH branch."
 
+stages:
+  - build
+
+build_project:
+  stage: build
+  script:
+    - xcodebuild clean -project ClassPlus.xcodeproj -scheme ClassPlus | xcpretty
+    - xcodebuild test -project ClassPlus.xcodeproj -scheme ClassPlus -destination 'platform=iOS Simulator,name=iPhone 6s,OS=9.2' | xcpretty -s
+  tags:
+    - ios_9-2
+    - xcode_7-2
+    - osx_10-11
