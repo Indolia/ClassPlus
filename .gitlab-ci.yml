@@ -4,8 +4,8 @@ stages:
 build_project:
   stage: build
   script:
-    - xcodebuild clean -project ProjectName.xcodeproj -scheme SchemeName | xcpretty
-    - xcodebuild test -project ProjectName.xcodeproj -scheme SchemeName -destination 'platform=iOS Simulator,name=iPhone 6s,OS=9.2' | xcpretty -s
+    - xcodebuild clean -project ClassPlus.xcodeproj -scheme ClassPlus | xcpretty
+    - xcodebuild test -project ClassPlus.xcodeproj -scheme ClassPlus -destination 'platform=iOS Simulator,name=iPhone 6s,OS=9.2' | xcpretty -s
   tags:
     - ios_9-2
     - xcode_7-2
