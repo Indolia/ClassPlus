@@ -25,6 +25,7 @@ struct AppConstants {
     }
     
     struct ServerURL {
-        static let baseURL = "https://reqres.in/api/users"
+       // static let baseURL = "https://reqres.in/api/users"
+        static let baseURL = "https://github.com/Indolia/ClassPlus/pulls"
     }
 }

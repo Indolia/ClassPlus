@@ -23,13 +23,16 @@ class RootInteractor: RootInteractorProtocol {
         if let data = encodeRequestParam(param: param) {
             requestWithBody(data: data, for: url, method: type, handler: handler)
         }else {
-            requestWithOutBody(for: url, method: type, handler: handler)
+            let someULR = URL(string: AppConstants.ServerURL.baseURL)
+            requestWithOutBody(for: someULR!, method: type, handler: handler)
         }
     }
     
     private func requestWithOutBody(for url: URL, method type: HttpMethod, handler: @escaping (Result<Data, NSError>) -> Void) {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = type.rawValue
+        urlRequest.addValue("token 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", forHTTPHeaderField: "Authorization")
+        urlRequest.addValue("application/vnd.github+json", forHTTPHeaderField: "Accept")
         request(with: urlRequest) { (result) in
             handler(result)
         }
