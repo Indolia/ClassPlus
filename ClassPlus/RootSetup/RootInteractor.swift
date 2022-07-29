@@ -31,7 +31,7 @@ class RootInteractor: RootInteractorProtocol {
     private func requestWithOutBody(for url: URL, method type: HttpMethod, handler: @escaping (Result<Data, NSError>) -> Void) {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = type.rawValue
-        urlRequest.addValue("token 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", forHTTPHeaderField: "Authorization")
+        urlRequest.addValue("token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", forHTTPHeaderField: "Authorization")
         urlRequest.addValue("application/vnd.github+json", forHTTPHeaderField: "Accept")
         request(with: urlRequest) { (result) in
             handler(result)
@@ -53,6 +53,19 @@ class RootInteractor: RootInteractorProtocol {
     private func request(with request: URLRequest, handler: @escaping (Result<Data, NSError>) -> Void) {
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             if error == nil , let jsonData = data {
+                
+                do {
+                    // make sure this JSON is in the format we expect
+                    let json = try JSONSerialization.jsonObject(with: jsonData, options: [])
+                    if let json = try JSONSerialization.jsonObject(with: jsonData, options: []) as? [String: Any] {
+                        // try to read out a string array
+                        if let names = json["names"] as? [String] {
+                            print(names)
+                        }
+                    }
+                } catch let error as NSError {
+                    print("Failed to load: \(error.localizedDescription)")
+                }
                 DispatchQueue.main.async {
                     handler(.success(jsonData))
                 }
