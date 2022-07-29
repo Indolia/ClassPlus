@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol HomeViewActionDelegate:class {
+protocol HomeViewActionDelegate:AnyObject {
     func delete(employee: EmployeeModel)
     func detailsUpdate(for employee: EmployeeModel)
     func createNewEmployee()
@@ -16,7 +16,7 @@ protocol HomeViewActionDelegate:class {
     func fetchNextPage()
 }
 
-protocol HomeViewProtocol:class {
+protocol HomeViewProtocol:AnyObject {
     static func get(from: AppConstants.Storyboard, with nav: NavigationViewControllerProtocol, delegate: HomeViewActionDelegate, userType: UserType) -> HomeViewProtocol
     func pushInNavStack()
     func reloadData(for employees: [EmployeeModel])
